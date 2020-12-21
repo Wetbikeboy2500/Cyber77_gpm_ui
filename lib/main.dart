@@ -1,9 +1,7 @@
 import 'package:cp77_gpm_ui/ContentPanel.dart';
-import 'package:cp77_gpm_ui/SidePanel.dart';
-import 'package:cp77_gpm_ui/util/PageTracker.dart';
+import 'package:cp77_gpm_ui/pages/Settings.dart';
 import 'package:flutter/material.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,21 +30,11 @@ class MyApp extends StatelessWidget {
         accentColor: Color.fromRGBO(41, 41, 41, 1),
         brightness: Brightness.dark,
       ),
-      home: Scaffold(
-        body: WindowBorder(
-          color: Theme.of(context).primaryColor,
-          width: 1,
-          child: ChangeNotifierProvider<PageTracker>(
-            create: (_) => PageTracker(),
-            child: Row(
-              children: [
-                SidePanel(),
-                ContentPanel(),
-              ],
-            ),
-          ),
-        ),
-      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => ContentPanel(),
+        '/settings': (context) => Settings(),
+      },
     );
   }
 }

@@ -1,13 +1,9 @@
-import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cp77_gpm_ui/pages/Dashboard.dart';
 import 'package:cp77_gpm_ui/pages/Home.dart';
 import 'package:cp77_gpm_ui/pages/Mods.dart';
-import 'package:cp77_gpm_ui/pages/Settings.dart';
-import 'package:cp77_gpm_ui/util/PageTracker.dart';
-import 'package:cp77_gpm_ui/widgets/WindowButtons.dart';
+import 'package:cp77_gpm_ui/widgets/ExpandedPage.dart';
+import 'package:cp77_gpm_ui/widgets/MenuItem.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ContentPanel extends StatefulWidget {
   ContentPanel({Key key}) : super(key: key);
@@ -17,51 +13,72 @@ class ContentPanel extends StatefulWidget {
 }
 
 class _ContentPanelState extends State<ContentPanel> {
-  List<Function> _screens;
-
-  @override
-  void initState() {
-    _screens = [
-      () => Home(),
-      () => Dashboard(),
-      () => Mods(),
-      () => Settings(),
-    ];
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Stack(
-        children: [
-          CachedNetworkImage(
-            imageUrl:
-                'https://i.pinimg.com/originals/1f/fc/bd/1ffcbd02fa2f7363c8471c68d432b90c.png',
-            width: 300,
-          ),
-          Column(
-            children: [
-              WindowTitleBarBox(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: MoveWindow(),
+    return ExpandedPage(
+      child: DefaultTabController(
+        length: 3,
+        child: Column(
+          children: [
+            Material(
+              color: Theme.of(context).primaryColor,
+              child: Row(
+                children: [
+                  Container(
+                    height: 35,
+                    width: 150,
+                    padding: EdgeInsets.all(5),
+                    alignment: Alignment.center,
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton(
+                        isExpanded: true,
+                        value: 1,
+                        items: [
+                          DropdownMenuItem(
+                            child: Text('Cyberpunk 2077'),
+                            value: 1,
+                          ),
+                        ],
+                        onChanged: (int value) {},
+                      ),
                     ),
-                    WindowButtons(),
+                  ),
+                  Expanded(
+                    child: TabBar(
+                      tabs: [
+                        MenuItem(name: 'Home'),
+                        MenuItem(name: 'Dashboard'),
+                        MenuItem(name: 'Mods'),
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    child: Container(
+                      width: 50,
+                      height: 35,
+                      child: Icon(Icons.settings),
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/settings');
+                    },
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: TabBarView(
+                  children: [
+                    Home(),
+                    Dashboard(),
+                    Mods(),
                   ],
                 ),
               ),
-              Expanded(
-                child: Consumer<PageTracker>(
-                  builder: (context, tracker, child) {
-                    return _screens[tracker.page].call();
-                  },
-                ),
-              ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

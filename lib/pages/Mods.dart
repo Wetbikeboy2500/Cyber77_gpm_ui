@@ -1,5 +1,3 @@
-import 'package:cp77_gpm_ui/widgets/PageContainer.dart';
-import 'package:cp77_gpm_ui/widgets/PageHeader.dart';
 import 'package:flutter/material.dart';
 
 class Mods extends StatefulWidget {
@@ -12,12 +10,8 @@ class Mods extends StatefulWidget {
 class _ModsState extends State<Mods> {
   @override
   Widget build(BuildContext context) {
-    return PageContainer(
-      child: Column(
-        children: [
-          PageHeader(name: 'Mods'),
-        ],
-      ),
+    return Center(
+      child: Text('Mods'),
     );
   }
 }
