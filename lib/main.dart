@@ -1,7 +1,10 @@
 import 'package:cp77_gpm_ui/ContentPanel.dart';
+import 'package:cp77_gpm_ui/Window.dart';
 import 'package:cp77_gpm_ui/pages/Settings.dart';
+import 'package:cp77_gpm_ui/util/CurrentRouteProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,11 +33,10 @@ class MyApp extends StatelessWidget {
         accentColor: Color.fromRGBO(41, 41, 41, 1),
         brightness: Brightness.dark,
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => ContentPanel(),
-        '/settings': (context) => Settings(),
-      },
+      home: ChangeNotifierProvider(
+        create: (_) => CurrentRouteProvider(),
+        child: Window(),
+      ),
     );
   }
 }
