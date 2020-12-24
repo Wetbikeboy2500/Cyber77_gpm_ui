@@ -1,7 +1,5 @@
-import 'package:cp77_gpm_ui/ContentPanel.dart';
 import 'package:cp77_gpm_ui/Window.dart';
-import 'package:cp77_gpm_ui/pages/Settings.dart';
-import 'package:cp77_gpm_ui/util/CurrentRouteProvider.dart';
+import 'package:cp77_gpm_ui/util/PageProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:provider/provider.dart';
@@ -27,14 +25,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        canvasColor: Color.fromRGBO(34, 34, 34, 1),
-        backgroundColor: Color.fromRGBO(34, 34, 34, 1),
-        primaryColor: Color.fromRGBO(41, 41, 41, 1),
-        accentColor: Color.fromRGBO(41, 41, 41, 1),
+        canvasColor: Color.fromRGBO(33, 33, 33, 1),
+        backgroundColor: Color.fromRGBO(33, 33, 33, 1),
+        primaryColor: Color.fromRGBO(50, 50, 50, 1),
+        accentColor: Color.fromRGBO(0, 173, 181, 1),
         brightness: Brightness.dark,
       ),
       home: ChangeNotifierProvider(
-        create: (_) => CurrentRouteProvider(),
+        create: (_) => PageProvider(),
         child: Window(),
       ),
     );

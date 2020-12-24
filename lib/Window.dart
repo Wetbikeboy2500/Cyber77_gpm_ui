@@ -1,9 +1,10 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:cp77_gpm_ui/ContentPanel.dart';
 import 'package:cp77_gpm_ui/pages/Settings.dart';
-import 'package:cp77_gpm_ui/util/CurrentRouteProvider.dart';
+import 'package:cp77_gpm_ui/util/PageProvider.dart';
 import 'package:cp77_gpm_ui/widgets/TitleBar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Window extends StatefulWidget {
   Window({Key key}) : super(key: key);
@@ -16,10 +17,16 @@ class _WindowState extends State<Window> {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   @override
+  void initState() {
+    super.initState();
+    context.read<PageProvider>().navigatorKey = navigatorKey;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: WindowBorder(
-        color: Colors.blue,
+        color: Theme.of(context).accentColor,
         width: 1,
         child: Column(
           children: [

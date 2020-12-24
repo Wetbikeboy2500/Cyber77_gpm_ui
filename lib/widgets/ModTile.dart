@@ -8,21 +8,26 @@ class ModTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      child: Column(
-        children: [
-          Expanded(
-            child: Container(
-              color: Colors.white,
+    return AspectRatio(
+      aspectRatio: 125 / 266,
+      child: Card(
+        elevation: 1,
+        color: Theme.of(context).primaryColor,
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          children: [
+            Expanded(
+              child: Container(
+                color: Colors.white,
+              ),
             ),
-          ),
-          ListTile(
-            visualDensity: VisualDensity(horizontal: 0, vertical: -3),
-            title: Text(name),
-            subtitle: Text(author),
-          ),
-        ],
+            ListTile(
+              visualDensity: VisualDensity(horizontal: 0, vertical: -3),
+              title: Text(name),
+              subtitle: Text(author),
+            ),
+          ],
+        ),
       ),
     );
   }

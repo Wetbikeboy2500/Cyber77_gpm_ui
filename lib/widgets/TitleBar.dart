@@ -1,5 +1,5 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:cp77_gpm_ui/util/CurrentRouteProvider.dart';
+import 'package:cp77_gpm_ui/util/PageProvider.dart';
 import 'package:cp77_gpm_ui/widgets/WindowButtons.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,14 +25,7 @@ class TitleBar extends StatelessWidget {
                 );
               },
               onPressed: () {
-                print(context.read<CurrentRouteProvider>().settings);
-                if (context.read<CurrentRouteProvider>().settings) {
-                  navigatorKey.currentState.pop();
-                  context.read<CurrentRouteProvider>().route = '';
-                } else {
-                  navigatorKey.currentState.pushNamed('/settings');
-                  context.read<CurrentRouteProvider>().route = '/settings';
-                }
+                context.read<PageProvider>().toggleSettings();
               },
             ),
             MoveWindow(

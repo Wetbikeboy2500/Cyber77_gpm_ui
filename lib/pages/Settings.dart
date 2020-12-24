@@ -1,4 +1,4 @@
-import 'package:cp77_gpm_ui/util/CurrentRouteProvider.dart';
+import 'package:cp77_gpm_ui/util/PageProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,8 +20,7 @@ class _SettingsState extends State<Settings> {
           RaisedButton(
             child: Text('Exit'),
             onPressed: () {
-              Navigator.pop(context);
-              context.read<CurrentRouteProvider>().route = '';
+              context.read<PageProvider>().closeSettings();
             },
           ),
         ],
