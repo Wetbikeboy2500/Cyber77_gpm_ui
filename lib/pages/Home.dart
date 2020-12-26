@@ -10,15 +10,29 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  int _calcFlexMods(double width) {
+    if (width <= 835) {
+      return 2;
+    }
+
+    if (width <= 1050) {
+      return 4;
+    }
+
+    return 5;
+  }
+
   @override
   Widget build(BuildContext context) {
+    print(MediaQuery.of(context).size.width);
+    double width = MediaQuery.of(context).size.width;
     return Row(
       children: [
         Expanded(
           child: UpdateCard(),
         ),
         Expanded(
-          flex: 4,
+          flex: _calcFlexMods(width),
           child: ModsCard(),
         ),
       ],

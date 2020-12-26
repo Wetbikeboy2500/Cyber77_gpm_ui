@@ -1,6 +1,5 @@
 import 'package:cp77_gpm_ui/widgets/EventCard.dart';
 import 'package:flutter/material.dart';
-import 'package:lipsum/lipsum.dart' as lipsum;
 
 class UpdateCard extends StatefulWidget {
   UpdateCard({Key key}) : super(key: key);
@@ -30,10 +29,15 @@ class _UpdateCardState extends State<UpdateCard> {
                 EventCard(
                   title: 'HOTFIX 1.06',
                   subtitle: 'Fixes some issues',
+                  icon: Icon(Icons.launch),
                 ),
                 EventCard(
                   title: 'GPM UI 0.0.1',
                   subtitle: 'First build of UI',
+                  icon: Icon(Icons.launch),
+                  onClick: () {
+                    print('Hello world');
+                  },
                 ),
               ],
             ),

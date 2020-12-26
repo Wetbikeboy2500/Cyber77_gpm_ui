@@ -14,14 +14,22 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Row(
+        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Settings'),
-          RaisedButton(
-            child: Text('Exit'),
-            onPressed: () {
-              context.read<PageProvider>().closeSettings();
-            },
+          Column(
+            children: [
+              Text(
+                'Settings',
+                style: Theme.of(context).textTheme.headline3,
+              ),
+              RaisedButton(
+                child: Text('Exit'),
+                onPressed: () {
+                  context.read<PageProvider>().closeSettings();
+                },
+              ),
+            ],
           ),
         ],
       ),

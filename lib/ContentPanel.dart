@@ -22,25 +22,6 @@ class _ContentPanelState extends State<ContentPanel> {
             color: Theme.of(context).primaryColor,
             child: Row(
               children: [
-                Container(
-                  height: 35,
-                  width: 150,
-                  padding: EdgeInsets.all(5),
-                  alignment: Alignment.center,
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton(
-                      isExpanded: true,
-                      value: 1,
-                      items: [
-                        DropdownMenuItem(
-                          child: Text('Cyberpunk 2077'),
-                          value: 1,
-                        ),
-                      ],
-                      onChanged: (int value) {},
-                    ),
-                  ),
-                ),
                 Expanded(
                   child: TabBar(
                     tabs: [
@@ -55,7 +36,7 @@ class _ContentPanelState extends State<ContentPanel> {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: TabBarView(
                 children: [
                   Home(),
