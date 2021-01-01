@@ -1,16 +1,11 @@
 # cp77_gpm_ui
 
-A new Flutter project.
+Game Package Manager UI built in Flutter for Cyberpunk 2077 and games alike.
+
+## About
+
+This project is meant to interface with the [Games Package Manager](https://github.com/WolvenKit/gpm). It is currently being built with the target of supporting Cyberpunk 2077.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This project is built for Flutter dekstop. It currently is trageting windows but can run on Linux. Check out the [Flutter website](https://flutter.dev/desktop) for dekstop which has in fo on setting up your enviroment. Alos make sure to be on the dev branch of Flutter.
