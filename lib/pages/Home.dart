@@ -10,6 +10,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  
   int _calcFlexMods(double width) {
     if (width <= 835) {
       return 2;

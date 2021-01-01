@@ -18,22 +18,24 @@ class EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> row = [
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: Theme.of(context).textTheme.subtitle1,
-          ),
-          Text(
-            subtitle,
-            style: Theme.of(context)
-                .textTheme
-                .subtitle2
-                .apply(color: Theme.of(context).textTheme.caption.color),
-          )
-        ],
-      )
+      Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+            Text(
+              subtitle,
+              style: Theme.of(context)
+                  .textTheme
+                  .subtitle2
+                  .apply(color: Theme.of(context).textTheme.caption.color),
+            )
+          ],
+        ),
+      ),
     ];
 
     if (icon != null) {

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:cp77_gpm_ui/ContentPanel.dart';
 import 'package:cp77_gpm_ui/pages/Settings.dart';
@@ -31,7 +33,11 @@ class _WindowState extends State<Window> {
         children: [
           Column(
             children: [
-              WindowTitleBarBox(),
+              (Platform.isWindows)
+                  ? WindowTitleBarBox()
+                  : SizedBox(
+                      height: 30,
+                    ),
               Expanded(
                 child: Navigator(
                   key: navigatorKey,
