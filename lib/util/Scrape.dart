@@ -25,6 +25,17 @@ Future<List<News>> fetchCyberpunkNews() async {
   return <News>[];
 }
 
+Future<List<News>> fetchRelease() async {
+  final String api =
+      'https://api.github.com/repos/wetbikeboy2500/cp77_gpm_ui/releases';
+  try {} catch (e, stack) {
+    print(e);
+    print(stack);
+  }
+
+  return <News>[];
+}
+
 class News {
   final String title;
   final String url;
