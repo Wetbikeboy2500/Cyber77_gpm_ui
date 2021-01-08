@@ -2,6 +2,7 @@
 import 'package:dio/dio.dart';
 import 'package:html/parser.dart';
 import 'package:intl/intl.dart';
+import 'package:path/path.dart' as p;
 
 Future<List<News>> fetchCyberpunkNews() async {
   try {
@@ -11,7 +12,8 @@ Future<List<News>> fetchCyberpunkNews() async {
     List<News> news = [];
     document.querySelectorAll('.c-news').forEach((element) {
       news.add(News(
-          url: element.attributes['href'],
+          url: p.url
+              .join('https://www.cyberpunk.net', element.attributes['href']),
           title: element.querySelector('.c-news__title').text,
           time: format.parse(
               element.querySelector('.c-news__date').attributes['data-text'])));
@@ -28,12 +30,27 @@ Future<List<News>> fetchCyberpunkNews() async {
 Future<List<News>> fetchRelease() async {
   final String api =
       'https://api.github.com/repos/wetbikeboy2500/cp77_gpm_ui/releases';
-  try {} catch (e, stack) {
+
+  List<News> news = [];
+
+  try {
+    var response = await Dio().get(api,
+        options: Options(
+          responseType: ResponseType.json,
+        ));
+
+    news = List<News>.from(response.data.map((element) {
+      return News(
+          time: DateTime.parse(element['published_at']),
+          title: element['name'],
+          url: element['html_url']);
+    }));
+  } catch (e, stack) {
     print(e);
     print(stack);
   }
 
-  return <News>[];
+  return news;
 }
 
 class News {

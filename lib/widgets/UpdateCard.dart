@@ -18,10 +18,14 @@ class _UpdateCardState extends State<UpdateCard> {
 
   @override
   void initState() {
-    fetchCyberpunkNews().then((value) {
-      setState(() {
-        loaded = true;
-        news = value;
+    fetchCyberpunkNews().then((first) {
+      fetchRelease().then((second) {
+        List<News> n = [...first, ...second];
+        n.sort((a, b) => b.time.compareTo(a.time));
+        setState(() {
+          loaded = true;
+          news = n;
+        });
       });
     }).catchError((e) {
       print('Error fetching cyberpunk news: $e');
@@ -34,16 +38,23 @@ class _UpdateCardState extends State<UpdateCard> {
     List<Widget> children;
 
     if (!loaded) {
-      children = [CircularProgressIndicator()];
+      children = [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(),
+          ],
+        ),
+      ];
     } else {
       children = List<Widget>.from(news.map((element) {
         return EventCard(
           title: element.title,
           subtitle: DateFormat('yyyy-MM-dd').format(element.time.toLocal()),
-          icon: Icon(Icons.launch),
+          icon: Icon((element.url.contains('github')) ? Icons.new_releases : Icons.launch),
           onClick: () async {
             if (await canLaunch(element.url)) {
-              print('launch');
               await launch(element.url);
             }
           },

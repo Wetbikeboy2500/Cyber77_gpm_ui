@@ -29,6 +29,7 @@ dependencies:
   dio: ^3.0.10
   html: ^0.14.0+4
   intl: ^0.16.1
+  path: ^1.7.0
   flutter:
     sdk: flutter
 
