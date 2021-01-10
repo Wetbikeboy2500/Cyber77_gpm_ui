@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cp77_gpm_ui/util/PageProvider.dart';
 import 'package:cp77_gpm_ui/util/Scrape.dart';
 import 'package:flutter/material.dart';
@@ -11,30 +13,57 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  GlobalKey containerKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Column(
         children: [
-          Column(
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                'Settings',
-                style: Theme.of(context).textTheme.headline3,
+              Column(
+                children: [
+                  Text(
+                    'Settings',
+                    style: Theme.of(context).textTheme.headline3,
+                  ),
+                ],
               ),
-              RaisedButton(
-                child: Text('Exit'),
-                onPressed: () {
-                  context.read<PageProvider>().closeSettings();
-                },
+            ],
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(5),
+                child: RaisedButton(
+                  child: Text('Go back'),
+                  onPressed: () {
+                    context.read<PageProvider>().closeSettings();
+                  },
+                ),
               ),
-              RaisedButton(
-                child: Text('Test'),
-                onPressed: () async {
-                  print(await fetchRelease());
-                },
+              Container(
+                padding: const EdgeInsets.all(5),
+                child: RaisedButton(
+                  child: Text('Exit app'),
+                  onPressed: () {
+                    exit(1);
+                  },
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(5),
+                child: RaisedButton(
+                  child: Text('Test'),
+                  onPressed: () async {
+                    print(await fetchRelease());
+                  },
+                ),
               ),
             ],
           ),

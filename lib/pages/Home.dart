@@ -25,7 +25,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).size.width);
     double width = MediaQuery.of(context).size.width;
     return Row(
       children: [

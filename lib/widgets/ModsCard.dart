@@ -13,6 +13,18 @@ class _ModsCardState extends State<ModsCard> {
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
 
+    final int count = screenWidth < 850
+        ? 4
+        : screenWidth < 950
+            ? 5
+            : screenWidth < 1150
+                ? 6
+                : screenWidth < 1450
+                    ? 7
+                    : screenWidth < 1750
+                        ? 8
+                        : 10;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -25,14 +37,9 @@ class _ModsCardState extends State<ModsCard> {
         ),
         Expanded(
           child: GridView.count(
-            crossAxisCount: screenWidth < 850
-                ? 4
-                : screenWidth < 950
-                    ? 5
-                    : screenWidth < 1050
-                        ? 6
-                        : 8,
-            childAspectRatio: 0.65,
+            crossAxisCount: count,
+            childAspectRatio:
+                (screenWidth / count) / (((screenWidth / count) * 1.55) + 20),
             children: List.filled(
               50,
               ModTile(

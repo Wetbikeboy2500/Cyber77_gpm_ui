@@ -17,38 +17,59 @@ class TitleBar extends StatelessWidget {
       return Material(
         color: Theme.of(context).primaryColor,
         child: WindowTitleBarBox(
-          child: Row(
+          child: Stack(
             children: [
-              WindowButton(
-                padding: const EdgeInsets.only(bottom: 0),
-                iconBuilder: (context) {
-                  return Icon(
-                    Icons.settings,
-                    size: 20,
-                  );
-                },
-                onPressed: () {
-                  context.read<PageProvider>().toggleSettings();
-                },
-              ),
-              MoveWindow(
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      left: 5,
-                      bottom: 5,
-                    ),
-                    child: Text(
-                      'Game Package Manager',
-                      textAlign: TextAlign.center,
+              Row(
+                children: [
+                  WindowButton(
+                    padding: const EdgeInsets.only(bottom: 0),
+                    iconBuilder: (context) {
+                      return Icon(
+                        Icons.settings,
+                        size: 20,
+                      );
+                    },
+                    onPressed: () {
+                      context.read<PageProvider>().toggleSettings();
+                    },
+                  ),
+                  MoveWindow(
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 5,
+                          bottom: 5,
+                        ),
+                        child: Text(
+                          'Game Package Manager',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  Expanded(
+                    child: MoveWindow(),
+                  ),
+                  WindowButtons(),
+                ],
               ),
-              Expanded(
-                child: MoveWindow(),
-              ),
-              WindowButtons(),
+              Row(
+                children: [
+                  Expanded(
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          bottom: 5,
+                        ),
+                        child: Text(
+                          'Cyberpunk 2077',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),
