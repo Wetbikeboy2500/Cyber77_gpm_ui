@@ -21,23 +21,10 @@ class TitleBar extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  WindowButton(
-                    padding: const EdgeInsets.only(bottom: 0),
-                    iconBuilder: (context) {
-                      return Icon(
-                        Icons.settings,
-                        size: 20,
-                      );
-                    },
-                    onPressed: () {
-                      context.read<PageProvider>().toggleSettings();
-                    },
-                  ),
-                  MoveWindow(
+                  Expanded(
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.only(
-                          left: 5,
                           bottom: 5,
                         ),
                         child: Text(
@@ -47,29 +34,58 @@ class TitleBar extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: MoveWindow(),
-                  ),
-                  WindowButtons(),
                 ],
               ),
               Row(
                 children: [
-                  Expanded(
+                  (context.watch<PageProvider>().enableBack)
+                      ? WindowButton(
+                          padding: const EdgeInsets.only(bottom: 0),
+                          iconBuilder: (context) {
+                            return Icon(
+                              Icons.arrow_back,
+                              color: Colors.grey,
+                              size: 20,
+                            );
+                          },
+                          onPressed: () {
+                            context.read<PageProvider>().toBrowse();
+                          },
+                        )
+                      : Container(),
+                  MoveWindow(
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.only(
+                          left: 5,
                           bottom: 5,
                         ),
                         child: Text(
-                          'Cyberpunk 2077',
+                          context.watch<PageProvider>().name,
                           textAlign: TextAlign.center,
                         ),
                       ),
                     ),
                   ),
+                  Expanded(
+                    child: MoveWindow(),
+                  ),
+                  WindowButton(
+                    padding: const EdgeInsets.only(bottom: 0),
+                    iconBuilder: (context) {
+                      return Icon(
+                        Icons.settings,
+                        color: Colors.grey,
+                        size: 20,
+                      );
+                    },
+                    onPressed: () {
+                      context.read<PageProvider>().toggleSettings();
+                    },
+                  ),
+                  WindowButtons(),
                 ],
-              )
+              ),
             ],
           ),
         ),

@@ -15,6 +15,8 @@ class ModTile extends StatelessWidget {
         color: Theme.of(context).primaryColor,
         clipBehavior: Clip.antiAlias,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
               child: Container(

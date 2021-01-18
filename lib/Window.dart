@@ -1,8 +1,9 @@
 import 'dart:io';
 
 import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:cp77_gpm_ui/ContentPanel.dart';
+import 'package:cp77_gpm_ui/pages/Browse.dart';
 import 'package:cp77_gpm_ui/pages/Settings.dart';
+import 'package:cp77_gpm_ui/pages/game/Game.dart';
 import 'package:cp77_gpm_ui/util/PageProvider.dart';
 import 'package:cp77_gpm_ui/util/pageAnimations/ScaleRoute.dart';
 import 'package:cp77_gpm_ui/util/pageAnimations/SlideRoute.dart';
@@ -45,7 +46,18 @@ class _WindowState extends State<Window> {
                   onGenerateRoute: (RouteSettings routeSettings) {
                     switch (routeSettings.name) {
                       case '/':
-                        return ScaleRoute(page: ContentPanel());
+                        return ScaleRoute(
+                          page: Browse(),
+                        );
+                        break;
+                      case '/game':
+                        var args =
+                            routeSettings.arguments as Map<String, String>;
+                        context.read<PageProvider>().setTitle(args['name']);
+
+                        return ScaleRoute(
+                          page: Game(),
+                        );
                         break;
                       case '/settings':
                         return SlideRoute(

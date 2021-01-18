@@ -8,11 +8,19 @@ class PageProvider extends ChangeNotifier {
   GlobalKey<NavigatorState> _navigatorKey;
 
   bool _settings = false;
+  bool _enableBack = false;
+  String _name = '';
 
   PageProvider();
 
   set navigatorKey(GlobalKey<NavigatorState> key) {
     _navigatorKey = key;
+  }
+
+  setTitle(String name) {
+    _enableBack = true;
+    _name = name;
+    notifyListeners();
   }
 
   ///Toggle if settings is opened or closed
@@ -42,4 +50,14 @@ class PageProvider extends ChangeNotifier {
       _navigatorKey.currentState.pop();
     }
   }
+
+  toBrowse() {
+    _name = '';
+    _enableBack = false;
+    _navigatorKey.currentState.pushReplacementNamed('/');
+    notifyListeners();
+  }
+
+  String get name => _name;
+  bool get enableBack => _enableBack;
 }
